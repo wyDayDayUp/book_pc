@@ -145,7 +145,7 @@ export default {
        },
        pageinfo:{
           pageNum:1,
-          pageSize:2,
+          pageSize:5,
           total:0,
           userName:'',
           orderCode:'',

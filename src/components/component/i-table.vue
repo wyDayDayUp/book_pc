@@ -22,7 +22,7 @@
         @current-change="handleCurrentChange"
         :selecttionShow = "true"
         :current-page="pageinfo.pageNum"
-        :page-sizes="[2,12,20]"
+        :page-sizes="[5,12,20]"
         :page-size="pageinfo.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="pageinfo.total">

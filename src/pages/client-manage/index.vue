@@ -97,7 +97,7 @@ export default {
        },
        pageinfo:{
           pageNum:1,
-          pageSize:2,
+          pageSize:5,
           userName:'',
           userLoginName:'',
           total:0,

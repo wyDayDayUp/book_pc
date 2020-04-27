@@ -173,7 +173,7 @@ export default {
        },
        pageinfo:{
           pageNum:1,
-          pageSize:2,
+          pageSize:5,
           userCode:'',
           userName:'',
           driverProvinceCode:'',
@@ -313,7 +313,8 @@ export default {
         ],
         userIdcard:[
           { required: true, message: '请输入身份证号', trigger: 'blur' },
-          { min: 18, max: 18, message: '身份证必须为18位', trigger: 'blur' }
+          { min: 18, max: 18, message: '身份证必须为18位', trigger: 'blur' },
+          { pattern:/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/, message: '请输入有效的身份证号', trigger: 'blur' }
         ],
         driverProvinceCode:[
            { required: true, message: '不能为空', trigger: 'blur' },

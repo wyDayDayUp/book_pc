@@ -152,7 +152,7 @@ export default {
        fileList:[],
        pageinfo:{
           pageNum:1,
-          pageSize:2,
+          pageSize:5,
           storeCode:'',
           storeName:'',
           managerName:'',

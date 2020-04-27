@@ -165,7 +165,7 @@ export default {
        //查询数据
        pageinfo:{
           pageNum:1,
-          pageSize:2,
+          pageSize:5,
           total:0,
           goodsName:'',
           goodsAdvertisement:'',

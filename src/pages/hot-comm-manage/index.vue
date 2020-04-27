@@ -70,7 +70,7 @@
       @size-change="chosehandleSizeChange"
       @current-change="chosehandleCurrentChange"
       :current-page="choseInfo.pageNum"
-      :page-sizes="[2, 5, 10, 20]"
+      :page-sizes="[ 5, 10, 20]"
       :page-size="choseInfo.pageSize"
       layout="total, sizes, prev, pager, next, jumper"
       :total="choseInfo.total">
@@ -137,7 +137,7 @@ export default {
        },
        pageinfo:{
           pageNum:1,
-          pageSize:2,
+          pageSize:5,
           goodsName:'',
           goodsCode:'',
           total:0,
@@ -145,7 +145,7 @@ export default {
       //  选择框数据
        choseInfo:{
          pageNum:1,
-         pageSize:2,
+         pageSize:5,
          goodsCode:'',
          goodsName:'',
          total:0,
