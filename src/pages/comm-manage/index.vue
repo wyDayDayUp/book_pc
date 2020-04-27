@@ -439,7 +439,7 @@ export default {
     handleAvatarSuccess(res, file){
       // this.dialogFromData.headImage = URL.createObjectURL(file.raw);
       // console.log(this.dialogFromData.headImage)
-      this.dialogFromData.imageId = res.imageId
+      this.dialogFromData.imageId = res.data.imageId
       console.log(res)
     },
     close(data){
