@@ -1,0 +1,24 @@
+.el-form{
+  .el-form-item{
+    .el-form-item__content{
+      .el-input{
+        .el-input__inner{
+          border-radius: 0;
+          height: 30px;
+        }
+      }
+    }
+  }
+}
+
+.el-form-item{
+  .el-form-item__content{
+    .el-button{
+      padding: 0 15px;
+      border-radius: 0;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+  }
+}

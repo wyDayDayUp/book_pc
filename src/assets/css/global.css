@@ -1,0 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body .el-table th.gutter{
+  display: table-cell!important;
+}
+html,body,#app{
+  height: 100%;
+}
