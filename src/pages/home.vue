@@ -83,6 +83,7 @@ export default {
        console.log(this.userInfo)
       if(!this.userInfo.hasOwnProperty("imageUrl"))
         this.userInfo.imageUrl = require('../assets/u18.jpg')  
+        console.log(this.userInfo.userRole)
       if(this.userInfo.userRole === 1){
         req('listMenus').then(res=>{
           this.menuList = res.data
@@ -100,10 +101,10 @@ export default {
         //   {title: '司机信息管理', path: '/home/driver-info-manage'},
         //   {title: '111', path: '/test'}
         // ]
-      }else{
+      }else if(this.userInfo.userRole === 2){
         this.menuList = [
-          {menuRoute: '客户管理', menuRoute: '/home/client-manage'},
-          {menuRoute: '订单管理', menuRoute: '/home/order-manage'},
+          {menuName: '客户管理', menuRoute: '/home/client-manage'},
+          {menuName: '订单管理', menuRoute: '/home/order-manage'},
         ]
       }
     })

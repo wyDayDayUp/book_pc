@@ -155,7 +155,7 @@ export default {
               req('deletemenu',{
                 goodsCateId:this.$refs.tree.getCurrentNode().goodsCateId
               }).then(res=>{
-                if(res.code!=1) return this.$message.error('删除失败')
+                if(res.code!=1) return this.$message.error(res.msg)
                   this.$message.success('删除成功')
                   this.isshow = false
                   this.getTree()
@@ -299,7 +299,7 @@ export default {
                   cateComment:this.dialogFromData.cateComment,
                   cateLevel:this.level,
                 }).then(res=>{
-                  if(res.code!=1) return this.$message.error('新增失败')
+                  if(res.code!=1) return this.$message.error(res.msg)
                     this.$message.success('新增成功')
                     this.show = false
                     this.getTree()
@@ -311,7 +311,7 @@ export default {
                   cateComment:this.dialogFromData.cateComment,
                   cateLevel:this.level,
                 }).then(res=>{
-                  if(res.code!=1) return this.$message.error('新增失败')
+                  if(res.code!=1) return this.$message.error(res.msg)
                     this.$message.success('新增成功')
                     this.show = false
                     this.getTree()
@@ -323,7 +323,7 @@ export default {
                   cateLevel:this.level,
                   cateParent:this.$refs.tree.getCurrentNode().goodsCateId
                 }).then(res=>{
-                  if(res.code!=1) return this.$message.error('新增失败')
+                  if(res.code!=1) return this.$message.error(res.msg)
                     this.$message.success('新增成功')
                     this.show = false
                     this.getTree()
@@ -337,7 +337,7 @@ export default {
               cateComment:this.dialogFromData.cateComment,
               version:this.$refs.tree.getCurrentNode().version
             }).then(res=>{
-              if(res.code!=1) return this.$message.error('修改失败')
+              if(res.code!=1) return this.$message.error(res.msg)
                   this.$message.success('修改成功')
                   this.show = false
                   this.isshow = false

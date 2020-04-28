@@ -161,6 +161,8 @@ export default {
           func:()=>{
             if(this.IsChecked.length < 1)
                  return this.$message.warning('请先勾选所要修改的数据！')
+            else if(this.IsChecked.length != 1)
+                 return this.$message.warning('最多勾选一个数据！')    
             this.orderdialogVisible = true
             req('listOrder',{
               orderId:this.editId

@@ -203,7 +203,7 @@ export default {
                req('deleteRollImage',{
                  rollImageIds:this.idList.join(','),
              }).then(res=>{
-                if(res.code!=1)  return this.$message.error('删除失败！')
+                if(res.code!=1)  return this.$message.error(res.msg)
                     this.$message.success('删除成功！')
                     this.pageinfo.pageNum = 1
                     this.pageinfo.rollImageCondition = 2
@@ -233,7 +233,7 @@ export default {
                 rollImageIds:this.idList.join(','),
                 rollImageCondition:1
               }).then(res=>{
-                if(res.code!=1)  return this.$message.error('修改失败！')
+                if(res.code!=1)  return this.$message.error(res.msg)
                     this.$message.success('修改成功！')
                     this.getlistRollImages()
               })
@@ -260,7 +260,7 @@ export default {
                 rollImageIds:this.idList.join(','),
                 rollImageCondition:0
               }).then(res=>{
-                if(res.code!=1)  return this.$message.error('修改失败！')
+                if(res.code!=1)  return this.$message.error(res.msg)
                     this.$message.success('修改成功！')
                     this.getlistRollImages()
               })
@@ -411,7 +411,7 @@ export default {
           req('addRollImage',{
             ...this.dialogFromData
           }).then(res=>{
-            if(res.code!=1)  return this.$message.error('时间不规范或者排位已经存在或轮播图已经存在！')
+            if(res.code!=1)  return this.$message.error(res.msg)
                 this.$message.success('新增成功！')
              this.show = false  
              this.pageinfo.pageNum = 1

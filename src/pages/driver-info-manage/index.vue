@@ -430,7 +430,7 @@ export default {
             req('addDriver',{
               ...this.dialogFromData
             }).then(res=>{
-              if(res.code!=1)  return this.$message.error('新增失败！')
+              if(res.code!=1)  return this.$message.error(res.msg)
                  this.$message.success('新增成功！')
                  this.show = false 
                  this.pageinfo.driverProvinceCode = ''
@@ -449,7 +449,10 @@ export default {
             req('updateDrivers',{
               ...this.dialogFromData
             }).then(res=>{
-               if(res.code!=1)  return this.$message.error('修改失败！')
+               if(res.code!=1){
+                 this.dialogFromData.userPassword = '******'
+                 return this.$message.error(res.msg)
+               }  
                  this.$message.success('修改成功！')
                  this.show = false 
                  this.pageinfo.driverProvinceCode = ''

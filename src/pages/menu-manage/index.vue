@@ -130,7 +130,13 @@ export default {
             });
           }
         },
-         {name:'刷新',type:'primary',func:()=>{this.show = true}},
+         {
+           name:'刷新',
+           type:'primary',
+           func:()=>{
+             this.$router.go(0)
+           }
+         },
       ],
       tableData:[
        
