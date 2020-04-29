@@ -80,6 +80,7 @@ export default {
       this.activeIndex =  '/home/user-manage'
     req('user').then(res=>{
       this.userInfo = res.data
+       window.sessionStorage.setItem('userRole',this.userInfo.userRole)
        if(this.userInfo.userRole === 2)
         this.activeIndex =  '/home/client-manage'
        console.log(this.activeIndex)

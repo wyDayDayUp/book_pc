@@ -188,8 +188,9 @@ export default {
          total:0,
        },
       toolba:[
-        {name:'新增',type:'primary',func:()=>{this.show = true}},
+        {val:1,name:'新增',type:'primary',func:()=>{this.show = true}},
         {
+          val:1,
           name:'删除',
           type:'primary',
           func:()=>{
@@ -218,6 +219,7 @@ export default {
            }
         },
         {
+          val:1,
           name:'启用',
           type:'primary',
           
@@ -246,6 +248,7 @@ export default {
           }
         },
         {
+          val:1,
           name:'禁用',
           type:'primary',
           func:()=>{

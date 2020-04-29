@@ -166,6 +166,7 @@ export default {
        },
       toolba:[
         {
+          val:1,
           name:'详情',
           type:'primary',
           func:()=>{
@@ -183,6 +184,7 @@ export default {
           }
         },
         {
+          val:1,
           name:'订单取消',
           type:'primary',
           func:()=>{
@@ -212,6 +214,7 @@ export default {
             }
           },
         {
+          val:1,
           name:'订单到货',
           type:'primary',
            func:()=>{
@@ -241,6 +244,7 @@ export default {
             }
         },
         {
+          val:1,
           name:'取消到货',
           type:'primary',
            func:()=>{
@@ -270,6 +274,7 @@ export default {
             }
         },
         {
+          val:1,
           name:'订单已取货',
           type:'primary',
            func:()=>{
@@ -299,6 +304,7 @@ export default {
             }
         },
         {
+          val:1,
           name:'取消已取货',
           type:'primary',
            func:()=>{

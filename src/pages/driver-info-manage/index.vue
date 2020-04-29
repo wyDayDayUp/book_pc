@@ -182,7 +182,7 @@ export default {
           total:0,
        },
       toolba:[
-        {name:'详情',type:'primary',
+        {val:'1',name:'详情',type:'primary',
           func:()=>{
              if(this.IsChecked.length < 1)
               return this.$message.warning('请先勾选所要查询详情的选项！')
@@ -198,7 +198,7 @@ export default {
             })
           }
         },
-        {name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增司机',this.type = '1',this.choseType = '2',this.TreeCity=[],this.TreeRegion =[]}},
+        {val:'1',name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增司机',this.type = '1',this.choseType = '2',this.TreeCity=[],this.TreeRegion =[]}},
         {
           name:'修改',
           type:'primary',
@@ -233,6 +233,7 @@ export default {
           }
         },
         {
+          val:'1',
           name:'删除',
           type:'primary',
           func:()=>{
@@ -335,6 +336,11 @@ export default {
     }
   },
   mounted(){
+    if(window.sessionStorage.getItem('userRole') === '2'){
+      this.toolba[1].val = 0
+      this.toolba[2].val = 0
+      this.toolba[3].val = 0
+    }
     this.getdriverList()
     req('listAreasByParentCode').then(res=>{
       if(res.code!=1) return console.log('查询失败')

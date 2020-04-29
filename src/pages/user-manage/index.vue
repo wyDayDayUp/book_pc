@@ -161,7 +161,7 @@ export default {
         version:''
       },
        toolba:[
-        {name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增用户',this.type = '1'
+        {val:1,name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增用户',this.type = '1'
              for(var key in this.dialogFromData){
                if(key === 'userRole')
                 this.dialogFromData[key] = ''
@@ -169,7 +169,7 @@ export default {
                 this.dialogFromData[key] = '' 
              }
         }},
-        {name:'修改',type:'primary',func:()=>{
+        {val:1,name:'修改',type:'primary',func:()=>{
           if(this.isChecked.length < 1)
              return this.$message.warning('请先勾选所要修改的数据！')
           else if(this.isChecked.length != 1)
@@ -189,6 +189,7 @@ export default {
            
         },
         {
+          val:1,
           name:'删除',
           type:'primary',
           func:()=>{

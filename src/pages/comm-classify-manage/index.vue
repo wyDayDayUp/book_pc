@@ -170,17 +170,18 @@ export default {
           total:0,
        },
        toolba:[
-        {name:'新增',type:'primary',func:()=>{
+        {val:1,name:'新增',type:'primary',func:()=>{
            if(this.add.cateLevel === 2)
                 return this.$message.warning('不能增加三级菜单')
           this.show = true,this.type = '1',this.diglogTitle = '新增分类',this.dialogFromData.cateName = '',
         this.dialogFromData.cateComment = ''
         }},
-        {name:'修改',type:'primary',func:()=>{
+        {val:1,name:'修改',type:'primary',func:()=>{
           if(!this.$refs.tree.getCurrentNode())
             return this.$message.warning('请点击要修改的选项')
           this.show = true,this.type = '2',this.diglogTitle = '修改分类'}},
         {
+          val:1,
           name:'删除',
           type:'primary',
           func:()=>{
@@ -206,7 +207,7 @@ export default {
             });
           }
         },
-        {name:'刷新',type:'primary',func:()=>{this.show = true}},
+        {val:1,name:'刷新',type:'primary',func:()=>{this.$router.go(0)}},
       ],
       col:[
         {label:'账号',prop:'account'},

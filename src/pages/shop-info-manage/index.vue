@@ -163,6 +163,7 @@ export default {
        },
       toolba:[
         {
+          val:'1',
           name:'详情',
           type:'primary',
           func:()=>{
@@ -181,9 +182,9 @@ export default {
             })
           }
         },
-        {name:'新增',type:'primary',func:()=>{this.show = true,this.choseType = '2',this.diglogTitle = '新增门店',this.type = '1',this.TreeCity=[],this.TreeRegion =[] }},
+        { val:'1',name:'新增',type:'primary',func:()=>{this.show = true,this.choseType = '2',this.diglogTitle = '新增门店',this.type = '1',this.TreeCity=[],this.TreeRegion =[] }},
         {
-
+           val:'1',
           name:'修改',
           type:'primary',
           func:()=>{
@@ -216,6 +217,7 @@ export default {
           }
         },
         {
+          val:'1',
           name:'删除',
           type:'primary',
           func:()=>{
@@ -315,6 +317,11 @@ export default {
   },
   mounted(){
     this.listStores()
+    if(window.sessionStorage.getItem('userRole') === '2'){
+      this.toolba[1].val = 0
+      this.toolba[2].val = 0
+      this.toolba[3].val = 0
+    }
     req('listAreasByParentCode').then(res=>{
       if(res.code!=1) return console.log('查询失败')
            console.log('查询成功！')

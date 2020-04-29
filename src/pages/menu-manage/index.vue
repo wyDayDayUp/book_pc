@@ -129,13 +129,14 @@ export default {
          {name:'商用管理',id:"4"},
        ],
        toolba:[
-        {name:'新增',type:'primary',func:()=>{this.show = true,this.type = '1',this.diglogTitle = '新增菜单'
+        {val:1,name:'新增',type:'primary',func:()=>{this.show = true,this.type = '1',this.diglogTitle = '新增菜单'
           this.dialogFromData.menuName = ''
           this.dialogFromData.menuComment = ''
           this.dialogFromData.menuRoute = ''
         }},
-        {name:'修改',type:'primary',func:()=>{this.show = true,this.type = '2',this.diglogTitle = '修改菜单'}},
+        {val:1,name:'修改',type:'primary',func:()=>{this.show = true,this.type = '2',this.diglogTitle = '修改菜单'}},
         {
+          val:1,
           name:'删除',
           type:'primary',
           func:()=>{
@@ -162,6 +163,7 @@ export default {
           }
         },
          {
+           val:1,
            name:'刷新',
            type:'primary',
            func:()=>{

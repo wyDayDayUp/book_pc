@@ -25,7 +25,7 @@
     </div>
     <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
     :pageinfo="pageinfo" @handleSelectionChange="handleSelectionChange">
-       <el-table-column  v-for="(item, index) in col" :key="index" :prop="item.prop" :label="item.label" align="center"></el-table-column>
+       <el-table-column  v-for="(item, index) in col" :key="index" :prop="item.prop" :label="item.label" align="center" :width="item.width"></el-table-column>
     </i-table>
     <i-dialog :visible="show" @close="close" :title="diglogTitle" 
     @innerVisible="innerVisible"
@@ -174,12 +174,13 @@ export default {
           goodsAuthor:'',
        },
        toolba:[
-        {name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增商品',this.type = '1'
+        {val:1,name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增商品',this.type = '1'
             for(var key in this.dialogFromData)
               this.dialogFromData[key] = ''
           }
         },
         {
+          val:1,
           name:'修改',
           type:'primary',
           func:()=>{
@@ -203,6 +204,7 @@ export default {
           }
         },  
         {
+          val:1,
           name:'删除',
           type:'primary',
           func:()=>{
@@ -230,6 +232,7 @@ export default {
           }
         },
         {
+          val:1,
           name:'上架',
           type:'primary',
           func:()=>{
@@ -257,6 +260,7 @@ export default {
           }
         },
          {
+           val:1,
           name:'下架',
           type:'primary',
           func:()=>{
@@ -285,20 +289,20 @@ export default {
         },
       ],
       col:[
-        {label:'商品名称',prop:'goodsName'},
-        {label:'定价',prop:'goodsFixPrice'},
-        {label:'售价',prop:'goodsSalePrice'},
-        {label:'销售量',prop:'goodsSaleSum'},
-        {label:'一级分类',prop:'firstGoodsCateName'},
-        {label:'二级分类',prop:'secondGoodsCateName'},
-        {label:'广告词',prop:'goodsAdvertisement'},
-        {label:'商品介绍',prop:'goodsDescription'},
-        {label:'商品状态',prop:'goodsCondition'},
-        {label:'上架时间',prop:'goodsSaleTime'},
-        {label:'浏览量',prop:'goodsVisitNum'},
-        {label:'商家名称',prop:'goodsBusiness'},
-        {label:'库存',prop:'goodsStock'},
-        {label:'isbn书号',prop:'goodsIsbn'},
+        {label:'商品名称',prop:'goodsName',width:'107px'},
+        {label:'定价',prop:'goodsFixPrice',width:'107px'},
+        {label:'售价',prop:'goodsSalePrice',width:'107px'},
+        {label:'销售量',prop:'goodsSaleSum',width:'107px'},
+        {label:'一级分类',prop:'firstGoodsCateName',width:'107px'},
+        {label:'二级分类',prop:'secondGoodsCateName',width:'107px'},
+        {label:'广告词',prop:'goodsAdvertisement',width:'107px'},
+        {label:'商品介绍',prop:'goodsDescription',width:'107px'},
+        {label:'商品状态',prop:'goodsCondition',width:'107px'},
+        {label:'上架时间',prop:'goodsSaleTime',width:'180px'},
+        // {label:'浏览量',prop:'goodsVisitNum'},
+        {label:'商家名称',prop:'goodsBusiness',width:'107px'},
+        {label:'库存',prop:'goodsStock',width:'107px'},
+        {label:'isbn书号',prop:'goodsIsbn',width:'107px'},
       ],
       tableData:[
         // {account:'1',name:'2',role:'3',sex:'4',phone:'5',email:'6',identity:'7'},

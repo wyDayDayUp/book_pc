@@ -151,8 +151,8 @@ export default {
          total:0,
        },
       toolba:[
-        {name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增热门位商品',this.type = '1',this.dialogFromData.goodsName = ''}},
-        {name:'修改',type:'primary',
+        {val:1,name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增热门位商品',this.type = '1',this.dialogFromData.goodsName = ''}},
+        {val:1,name:'修改',type:'primary',
             func:()=>{
             if(this.IsChecked.length < 1)
                return this.$message.warning('请先勾选所要修改的选项！') 
@@ -165,6 +165,7 @@ export default {
           }
         },
         {
+          val:1,
           name:'删除',
           type:'primary',
           func:()=>{
@@ -195,6 +196,7 @@ export default {
           }
         },
         {
+          val:1,
           name:'展示商品数量',
           type:'primary',
           func:()=>{

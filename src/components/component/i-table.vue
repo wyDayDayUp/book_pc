@@ -3,7 +3,7 @@
     <div class="btn-list" v-show="toolbar.length">
       <!-- <template slot-scope="scope"> -->
         <!-- {{scope.row}} -->
-        <el-button v-for="(item, index) in toolbar" :key="index" :type="item.type" @click="item.func">
+        <el-button v-for="(item, index) in toolbar" :key="index" :type="item.type" @click="item.func" v-show="item.val">
         {{item.name}}
         </el-button>
       <!-- </template>   -->
