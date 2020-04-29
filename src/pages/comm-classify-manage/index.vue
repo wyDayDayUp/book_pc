@@ -75,7 +75,7 @@
     <i-dialog :visible="show" @close="close" :title="diglogTitle" 
     @innerVisible="innerVisible"
     @outerVisible="outerVisible"
-    >
+   >
     <el-form :model="dialogFromData" :rules="rules" ref="form">
       <el-form-item tem label="名称" prop="cateName" label-width="70px">
          <el-input style="width:85%" v-model="dialogFromData.cateName"></el-input>
@@ -332,19 +332,20 @@ export default {
 
               
            
-                if(this.level === '1'){
+                if(this.add.cateLevel === 1){
                 req('addonemenu',{
                   cateName:this.dialogFromData.cateName,
                   cateComment:this.dialogFromData.cateComment,
-                  cateLevel:this.level,
+                  cateLevel:2,
+                  cateParent:this.add.goodsCateId
                 }).then(res=>{
                   if(res.code!=1) return this.$message.error(res.msg)
                     this.$message.success('新增成功')
                     this.show = false
                     this.getTree()
                 })
-              }else if(this.level === '2'){
-                if(this.add.cateLevel === 2){
+              }else{
+                
                   req('addonemenu',{
                   cateName:this.dialogFromData.cateName,
                   cateComment:this.dialogFromData.cateComment,
@@ -355,19 +356,7 @@ export default {
                     this.show = false
                     this.getTree()
                 })
-                }else{
-                req('addtwomenu',{
-                  cateName:this.dialogFromData.cateName,
-                  cateComment:this.dialogFromData.cateComment,
-                  cateLevel:this.level,
-                  cateParent:this.$refs.tree.getCurrentNode().goodsCateId
-                }).then(res=>{
-                  if(res.code!=1) return this.$message.error(res.msg)
-                    this.$message.success('新增成功')
-                    this.show = false
-                    this.getTree()
-                })
-              }  
+                
             }
           }else if(this.type === '2'){
             req('editMenu',{
@@ -455,6 +444,9 @@ export default {
 }
 .select{
   width: 100%;
+}
+/deep/ .el-dialog{
+  width: 500px;
 }
 /deep/ .from{
    margin-top: 20px;
