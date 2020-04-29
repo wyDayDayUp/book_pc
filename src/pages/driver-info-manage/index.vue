@@ -189,6 +189,7 @@ export default {
             else if(this.IsChecked.length != 1)
               return this.$message.warning('最多只能选择一条数据！')   
             this.driverdialogVisible = true
+            this.drivertableData = []
             req('findDriver',{
               userId:this.editId
             }).then(res=>{
@@ -305,7 +306,9 @@ export default {
             {pattern:/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/ ,required: true, message: '不是有效的电话号码', trigger: 'blur' },
         ],
         userLoginName:[
-           { required: true, message: '不能为空', trigger: 'blur' },
+           { required: true, message: '请输入账号名', trigger: 'blur' },
+           { min: 3, max: 12, message: '长度在 3 到 12 个字符', trigger: 'blur' },
+           {pattern:/^[0-9a-zA-Z]+$/, message: '不能带有汉字', trigger: 'blur'}
         ],
         userPassword:[
            { required: true, message: '请输入密码', trigger: 'blur' },
@@ -373,6 +376,8 @@ export default {
       this.pageinfo.driverCityCode = ''
       this.pageinfo.driverRegionCode = ''
       this.fromData.driverRegionCode = ''
+      this.TreeCity = []
+      this.TreeRegion = []
       this.getdriverList()
     },
     handleAvatarSuccess(res, file){

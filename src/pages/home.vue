@@ -80,7 +80,9 @@ export default {
       this.activeIndex =  '/home/user-manage'
     req('user').then(res=>{
       this.userInfo = res.data
-       console.log(this.userInfo)
+       if(this.userInfo.userRole === 2)
+        this.activeIndex =  '/home/client-manage'
+       console.log(this.activeIndex)
       if(!this.userInfo.hasOwnProperty("imageUrl"))
         this.userInfo.imageUrl = require('../assets/u18.jpg')  
         console.log(this.userInfo.userRole)
@@ -102,9 +104,12 @@ export default {
         //   {title: '111', path: '/test'}
         // ]
       }else if(this.userInfo.userRole === 2){
+         this.$router.push('/home/client-manage')
         this.menuList = [
           {menuName: '客户管理', menuRoute: '/home/client-manage'},
           {menuName: '订单管理', menuRoute: '/home/order-manage'},
+          {menuName: '门店信息管理', menuRoute: '/home/shop-info-manage'},
+           {menuName: '司机信息管理', menuRoute: '/home/driver-info-manage'},
         ]
       }
     })

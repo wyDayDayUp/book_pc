@@ -1,19 +1,50 @@
 <template>
   <div>
-    <el-row>
-      <el-col :span="8">
-        <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
-        @handleSelectionChange="handleSelectionChange">
-        </i-table>
-        <div class="list_box">
-         <el-menu :default-active="activeIndex" @select="selectIndex">
-             <el-menu-item v-for="(item) in menuList" :key="item.menuId" :index="item.menuId" @click="version(item.version)">
-               <span slot="title">{{item.menuName}}</span>
-             </el-menu-item>  
-          </el-menu>
+    <!-- <el-row>
+      <el-col :span="8" class="left"> -->
+        <div class="top"> 
+            <div class="Left">
+                <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
+                @handleSelectionChange="handleSelectionChange">
+                </i-table>
+            </div>
+            <div class="Right">
+               <h3>菜单详情</h3>
+            </div>
         </div>
-      </el-col>
-       <el-col :span="16">
+        <div class="botton">
+          <div class="list_box">
+            <el-menu :default-active="activeIndex" @select="selectIndex">
+                <el-menu-item v-for="(item) in menuList" :key="item.menuId" :index="item.menuId" @click="version(item.version)">
+                  <span slot="title">{{item.menuName}}</span>
+                </el-menu-item>  
+            </el-menu>
+          </div>
+          <div class="info">
+            <el-form :model="menuInfo" v-show="isshow">
+              <!-- <el-row>
+                <el-col :span="8"> -->
+                  <el-form-item label="名称" label-width="70px" prop="menuName">
+                    <el-input v-model="menuInfo.menuName"></el-input>
+                  </el-form-item>
+                <!-- </el-col>  -->
+                <!-- <el-col :span="8"> -->
+                  <el-form-item label="备注" label-width="70px" prop="menuComment">
+                    <el-input v-model="menuInfo.menuComment"></el-input>
+                  </el-form-item>
+                <!-- </el-col>   -->
+              <!-- </el-row> -->
+              <!-- <el-col :span="8"> -->
+                <el-form-item label="路由" label-width="70px" prop="menuRoute">
+                    <el-input v-model="menuInfo.menuRoute"></el-input>
+                </el-form-item>
+              <!-- </el-col>  -->
+            </el-form>
+          </div>
+        </div>
+      
+      <!-- </el-col> -->
+       <!-- <el-col :span="14">
          <h3>菜单详情</h3>
          <el-form :model="menuInfo" v-show="isshow">
           <el-row>
@@ -34,9 +65,9 @@
             </el-form-item>
           </el-col> 
         </el-form>
-       </el-col>
+       </el-col> -->
        
-    </el-row>
+    <!-- </el-row> -->
 
 
     <i-dialog :visible="show" @close="close" :title="diglogTitle" 
@@ -272,6 +303,62 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.top{
+  display: flex;
+  align-items: center;
+  margin-left: 35px;
+  margin-top: 20px;
+  width: 60%;
+  border: 1px solid #ccc;
+  .Left{
+    border-right: 1px solid #ccc;
+    width: 40%;
+  }
+  .Right{
+    h3{
+      margin-left: 20px;
+      text-align: center;
+      font-weight: normal;
+      font-size: 24px;
+    }
+  }
+}
+.botton{
+  display: flex;
+  width: 60%;
+   margin-left: 35px;
+  border: 1px solid #ccc;
+  border-top: 0px;
+  .list_box{
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // margin-left: 110px;
+  width: 40%;
+  a{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .el-menu{
+    border-right: 0px;
+    .el-menu-item{
+      span{
+        font-size: 16px;
+      }
+    }
+  }
+  
+}
+ .info{
+   margin-left: 30px;
+   margin-top: 15px;
+ }
+}
+.left{
+  margin-left: 50px;
+  border: 1px black solid;
+}
 .select{
   width: 100%;
 }
@@ -301,38 +388,21 @@ a{
   text-decoration: none;
   color: rgb(51, 51, 51);
 }
- .list_box{
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 110px;
-  a{
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .el-menu{
-    border-right: 0px;
-    .el-menu-item{
-      span{
-        font-size: 16px;
-      }
-    }
-  }
-  
-}
-h3{
-  margin-top: 20px;
-  font-weight: normal;
-  font-size: 24px;
-  margin-bottom: 20px;
-  margin-left: -65px;
-}
-/deep/ .el-dialog{
-  width: 28%;
-}
-.el-input{
-  width: 80%;
-}
-/deep/ .el-form-item__label{
-  font-size: 16px;
-}
+ 
+// h3{
+//   margin-top: 20px;
+//   font-weight: normal;
+//   font-size: 24px;
+//   margin-bottom: 20px;
+//   margin-left: -65px;
+// }
+// /deep/ .el-dialog{
+//   width: 28%;
+// }
+// .el-input{
+//   width: 100%;
+// }
+// /deep/ .el-form-item__label{
+//   font-size: 16px;
+// }
 </style>

@@ -355,6 +355,8 @@ export default {
        this.fromData.storeProvinceCode = ''
        this.fromData.storeCityCode = ''
        this.fromData.storeRegionCode = ''
+       this.TreeCity = []
+       this.TreeRegion = []
        this.listStores()
     },
     handleSizeChange(value){

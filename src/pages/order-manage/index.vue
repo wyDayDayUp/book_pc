@@ -8,7 +8,20 @@
         <el-form-item label="订单编码" label-width="80px" prop="orderCode" class="input">
             <el-input v-model="fromData.orderCode"></el-input>
         </el-form-item>
-        <el-form-item label="付款时间"  label-width="80px" prop="value">
+         <el-form-item label="订单状态"  label-width="80px" class="selectb" prop="orderCondition">
+           <el-select v-model="fromData.orderCondition" placeholder="请选择" style="width:90%">
+            <el-option label="已下单" value="0"></el-option>
+            <el-option label="已取消" value="1"></el-option>
+            <el-option label="已到货" value="2"></el-option>
+            <el-option label="已取货" value="3"></el-option>
+            <el-option label="已完成未评价" value="4"></el-option>
+            <el-option label="已完成已评价" value="5"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="手机号" class="input" label-width="80px" prop="userPhone"> 
+           <el-input  v-model="fromData.userPhone"></el-input>
+        </el-form-item>
+         <el-form-item label="付款时间"  label-width="80px" prop="value" style="margin-left:25px">
           <el-date-picker
             v-model="fromData.value"
             type="daterange"
@@ -19,10 +32,7 @@
             :default-time="['00:00:00', '23:59:59']">
           </el-date-picker>
         </el-form-item>  
-        <el-form-item label="手机号" class="input" label-width="80px" prop="userPhone"> 
-           <el-input  v-model="fromData.userPhone"></el-input>
-        </el-form-item>
-         <el-form-item label="订单状态"  label-width="80px" class="selectb" prop="orderCondition">
+         <!-- <el-form-item label="订单状态"  label-width="80px" class="selectb" prop="orderCondition">
            <el-select v-model="fromData.orderCondition" placeholder="请选择" style="width:80%">
             <el-option label="已下单" value="0"></el-option>
             <el-option label="已取消" value="1"></el-option>
@@ -31,11 +41,11 @@
             <el-option label="已完成未评价" value="4"></el-option>
             <el-option label="已完成已评价" value="5"></el-option>
           </el-select>
-        </el-form-item>
+        </el-form-item> -->
       </i-search>
     </div>
     <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
-    :pageinfo="pageinfo" @handleSelectionChange="handleSelectionChange">
+    :pageinfo="pageinfo" @handleSelectionChange="handleSelectionChange" >
        <el-table-column  v-for="(item, index) in col" :key="index" :prop="item.prop" :label="item.label" align="center"></el-table-column>
     </i-table>
     <i-dialog :visible="show" @close="close" :title="diglogTitle" 
@@ -519,7 +529,7 @@ export default {
         }
         .selectb{
           width: 21%;
-          margin-left: 24px;
+          margin-left: 66px;
           .el-select{
             width: 62%;
           }

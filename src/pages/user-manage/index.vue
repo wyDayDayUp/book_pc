@@ -12,7 +12,7 @@
           <el-select v-model="fromData.userRole" placeholder="请选择" style="width:90%">
             <el-option label="管理员" value="1"></el-option>
             <el-option label="店长" value="2"></el-option>
-            <el-option label="司机" value="3"></el-option>
+            <!-- <el-option label="司机" value="3"></el-option> -->
           </el-select>
         </el-form-item>
       </i-search>
@@ -43,7 +43,11 @@
       <el-form-item>
         <el-col :span="11">
           <el-form-item label="用户性别"  prop="userSex" label-width="100px">
-            <el-input v-model="dialogFromData.userSex"></el-input>
+            <el-select v-model="dialogFromData.userSex" placeholder="请选择" style="width:90%">
+              <el-option label="男" value="1"></el-option>
+              <el-option label="女" value="2"></el-option>
+              <!-- <el-option label="司机" value="3"></el-option> -->
+            </el-select>
           </el-form-item>
         </el-col>  
          <el-col :span="11">
@@ -75,7 +79,7 @@
             <el-select placeholder="请选择" v-model="dialogFromData.userRole" class="select">
               <el-option label="管理员" value="1"></el-option>
               <el-option label="店长" value="2"></el-option>
-               <el-option label="司机" value="3"></el-option>
+               <!-- <el-option label="司机" value="3"></el-option> -->
             </el-select>
           </el-form-item>
         </el-col>  
@@ -160,7 +164,7 @@ export default {
         {name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增用户',this.type = '1'
              for(var key in this.dialogFromData){
                if(key === 'userRole')
-                this.dialogFromData[key] = ""
+                this.dialogFromData[key] = ''
                else
                 this.dialogFromData[key] = '' 
              }
@@ -175,6 +179,10 @@ export default {
               this.dialogFromData[key] = this.editDataInfo[key]
            }
            this.dialogFromData.userPassword = '******'
+          //  if(this.dialogFromData.userSex === '男')
+          //     this.dialogFromData.userSex = 1
+          //   else
+          //     this.dialogFromData.userSex = 2  
            console.log(this.dialogFromData)
            
           }
@@ -212,6 +220,7 @@ export default {
         },
       ],
       col:[
+        {label:'用户编号',prop:'userId'},
         {label:'账号',prop:'userLoginName'},
         {label:'姓名',prop:'userName'},
         {label:'角色',prop:'userRole'},
@@ -232,12 +241,12 @@ export default {
       rules:{
         userLoginName:[
           { required: true, message: '请输入账号名', trigger: 'blur' },
-          { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' },
+          { min: 3, max: 12, message: '长度在 3 到 12 个字符', trigger: 'blur' },
           {pattern:/^[0-9a-zA-Z]+$/, message: '不能带有汉字', trigger: 'blur'}
         ],
         userName:[
            { required: true, message: '请输入用户姓名', trigger: 'blur' },
-           { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' }
+           { min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
         ],
         userSex:[
            { required: true, message: '请输入性别', trigger: 'blur' },
@@ -260,7 +269,7 @@ export default {
            { min: 5, max: 18, message: '长度在 5 到 18 个字符', trigger: 'blur' }
         ],
         userRole:[
-          {required: true, message: '请选择角色', trigger: 'change' }
+          {required: true, message: '请选择角色', trigger: 'blur' }
         ],
       },
       
@@ -310,8 +319,8 @@ export default {
                     item.userRole = '管理员'
                   else if(item.userRole ===2)
                     item.userRole = '店长'
-                  else if(item.userRole ===3)
-                    item.userRole = '司机'  
+                  // else if(item.userRole ===3)
+                  //   item.userRole = '司机'  
                 })
                 this.pageinfo.total =  res.data.total
                 console.log('查询成功') 

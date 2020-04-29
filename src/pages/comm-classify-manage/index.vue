@@ -1,6 +1,44 @@
 <template>
   <div>
-    <el-row>
+     <div class="top">
+       <div class="Left">
+         <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
+        :pageinfo="pageinfo" @handleSelectionChange="handleSelectionChange">
+          <el-table-column  v-for="(item, index) in col" :key="index" :prop="item.prop" :label="item.label" align="center"></el-table-column>
+        </i-table>
+       </div>
+       <div class="Right">
+          <h3>分类详情</h3>
+       </div>
+     </div> 
+     <div class="botton">
+        <div class="list_box">
+          <el-tree :data="treedata" :props="defaultProps" 
+          ref="tree"
+          @current-change="test"
+          @node-expand="Open"
+          @node-collapse="Close"
+          @node-click="nodeInfo"
+          ></el-tree>
+        </div>
+        <div class="info">
+           <el-form v-show="isshow" :model="dialogFromData">
+           <!-- <el-row> -->
+             <!-- <el-col :span="12"> -->
+                <el-form-item label="名称" label-width="70px">
+                  <el-input v-model="dialogFromData.cateName"></el-input>
+                </el-form-item>
+             <!-- </el-col>  -->
+             <!-- <el-col :span="12"> -->
+               <el-form-item label="备注" label-width="70px">
+                  <el-input v-model="dialogFromData.cateComment"></el-input>
+               </el-form-item>
+             <!-- </el-col>  
+           </el-row>   -->
+         </el-form>
+        </div>
+     </div>
+    <!-- <el-row>
       <el-col :span="6">
         <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
         :pageinfo="pageinfo" @handleSelectionChange="handleSelectionChange">
@@ -31,7 +69,7 @@
            </el-row>  
          </el-form>
        </el-col>
-    </el-row>
+    </el-row> -->
 
 
     <i-dialog :visible="show" @close="close" :title="diglogTitle" 
@@ -362,6 +400,58 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.top{
+  display: flex;
+  align-items: center;
+  margin-left: 35px;
+  margin-top: 20px;
+  width: 60%;
+  border: 1px solid #ccc;
+  .Left{
+    border-right: 1px solid #ccc;
+    width: 40%;
+  }
+  .Right{
+    h3{
+      margin-left: 20px;
+      text-align: center;
+      font-weight: normal;
+      font-size: 24px;
+    }
+  }
+}
+.botton{
+  display: flex;
+  width: 60%;
+   margin-left: 35px;
+  border: 1px solid #ccc;
+  border-top: 0px;
+  .list_box{
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: center;
+  // margin-left: 110px;
+  width: 40%;
+  a{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .el-menu{
+    border-right: 0px;
+    .el-menu-item{
+      span{
+        font-size: 16px;
+      }
+    }
+  }
+  
+}
+ .info{
+   margin-left: 30px;
+   margin-top: 15px;
+ }
+}
 .select{
   width: 100%;
 }
@@ -388,9 +478,11 @@ export default {
   }
 }
 /deep/ .el-tree{
-  margin-left: 120px;
+  margin-left: 125px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   .el-tree-node__label{
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 6px;
     margin-top: 5px;
   }
@@ -398,16 +490,16 @@ export default {
     line-height: 20px;
   }
 }
-h3{
-  margin-top: 20px;
-  font-weight: normal;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-.el-input{
-  width: 70%;
-}
-/deep/ .el-dialog{
-  width: 28%;
-}
+// h3{
+//   margin-top: 20px;
+//   font-weight: normal;
+//   font-size: 24px;
+//   margin-bottom: 20px;
+// }
+// .el-input{
+//   width: 70%;
+// }
+// /deep/ .el-dialog{
+//   width: 28%;
+// }
 </style>
