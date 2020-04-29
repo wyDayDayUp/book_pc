@@ -218,7 +218,7 @@ export default {
              req('deleteGoods',{
                goodsIds:this.idList.join(',')
              }).then(res=>{
-                if(res.code!=1)  return this.$message.error('删除失败！')
+                if(res.code!=1)  return this.$message.error(res.msg)
                   this.$message.success('删除成功！')
                   this.pageinfo.pageNum = 1
                   this.getshopList()
@@ -247,7 +247,7 @@ export default {
                 goodsIds:this.idList.join(','),
                 goodsCondition:1
               }).then(res=>{
-                if(res.code!=1)  return this.$message.error('修改失败！')
+                if(res.code!=1)  return this.$message.error(res.msg)
                     this.$message.success('修改成功！')
                   this.getshopList() 
               })
@@ -275,7 +275,7 @@ export default {
                 goodsIds:this.idList.join(','),
                 goodsCondition:2
               }).then(res=>{
-                if(res.code!=1)  return this.$message.error('修改失败！')
+                if(res.code!=1)  return this.$message.error(res.msg)
                     this.$message.success('修改成功！')
                   this.getshopList() 
               })
@@ -290,6 +290,8 @@ export default {
       ],
       col:[
         {label:'商品名称',prop:'goodsName',width:'107px'},
+        {label:'作者',prop:'goodsAuthor',width:'107px'},
+        {label:'出版社',prop:'goodsPublisher',width:'107px'},
         {label:'定价',prop:'goodsFixPrice',width:'107px'},
         {label:'售价',prop:'goodsSalePrice',width:'107px'},
         {label:'销售量',prop:'goodsSaleSum',width:'107px'},
@@ -469,7 +471,7 @@ export default {
             req('addGoods',{
               ...this.dialogFromData
             }).then(res=>{
-              if(res.code!=1)  return this.$message.error('新增失败！')
+              if(res.code!=1)  return this.$message.error(res.msg)
                  this.$message.success('新增成功！')
                  this.pageinfo.pageNum = 1
                  this.show = false
@@ -485,7 +487,7 @@ export default {
             req('updateGoods',{
               ...this.dialogFromData
             }).then(res=>{
-              if(res.code!=1)  return this.$message.error('修改失败！')
+              if(res.code!=1)  return this.$message.error(res.msg)
                  this.$message.success('修改成功！')
                  this.pageinfo.pageNum = 1
                  this.show = false

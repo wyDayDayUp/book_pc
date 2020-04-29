@@ -28,6 +28,10 @@ const config = {
   getshopList:{
     url:'/pc/goods/listAllGoods',
     method: 'post',
+  },
+  getlistRollImageGoods:{
+    url:'/pc/rollImage/listRollImageGoods',
+    method: 'post',
   }
 }
 

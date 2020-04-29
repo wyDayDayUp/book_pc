@@ -340,7 +340,7 @@ export default {
       })
     },
     getshopList(){
-      req('getshopList',{
+      req('getlistRollImageGoods',{
         ...this.choseInfo,
       }).then(res=>{
         // console.log(res)
