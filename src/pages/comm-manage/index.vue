@@ -25,7 +25,7 @@
     </div>
     <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
     :pageinfo="pageinfo" @handleSelectionChange="handleSelectionChange">
-       <el-table-column  v-for="(item, index) in col" :key="index" :prop="item.prop" :label="item.label" align="center" :width="item.width"></el-table-column>
+       <el-table-column :show-overflow-tooltip='true' v-for="(item, index) in col" :key="index" :prop="item.prop" :label="item.label" align="center" :width="item.width"></el-table-column>
     </i-table>
     <i-dialog :visible="show" @close="close" :title="diglogTitle" 
     @innerVisible="innerVisible"
@@ -289,9 +289,9 @@ export default {
         },
       ],
       col:[
-        {label:'商品名称',prop:'goodsName',width:'107px'},
-        {label:'作者',prop:'goodsAuthor',width:'107px'},
-        {label:'出版社',prop:'goodsPublisher',width:'107px'},
+        {label:'商品名称',prop:'goodsName',width:'160px'},
+        {label:'作者',prop:'goodsAuthor',width:'170px'},
+        {label:'出版社',prop:'goodsPublisher',width:'145px'},
         {label:'定价',prop:'goodsFixPrice',width:'107px'},
         {label:'售价',prop:'goodsSalePrice',width:'107px'},
         {label:'销售量',prop:'goodsSaleSum',width:'107px'},
@@ -304,7 +304,7 @@ export default {
         // {label:'浏览量',prop:'goodsVisitNum'},
         {label:'商家名称',prop:'goodsBusiness',width:'107px'},
         {label:'库存',prop:'goodsStock',width:'107px'},
-        {label:'isbn书号',prop:'goodsIsbn',width:'107px'},
+        {label:'isbn书号',prop:'goodsIsbn',width:'140px'},
       ],
       tableData:[
         // {account:'1',name:'2',role:'3',sex:'4',phone:'5',email:'6',identity:'7'},

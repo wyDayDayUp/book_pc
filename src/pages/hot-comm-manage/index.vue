@@ -12,15 +12,15 @@
     </div>
     <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
     :pageinfo="pageinfo" @handleSelectionChange="handleSelectionChange">
-       <el-table-column type="index" width="55" align="center" label="排序"></el-table-column>
-       <el-table-column  v-for="(item, index) in col" :key="index" :prop="item.prop" :label="item.label" align="center"></el-table-column>
+       <!-- <el-table-column type="index" width="55" align="center" label="排序" :index="Index"></el-table-column> -->
+       <el-table-column :show-overflow-tooltip='true' v-for="(item, index) in col" :key="index" :prop="item.prop" :label="item.label" align="center"></el-table-column>
     </i-table>
     <i-dialog :visible="show" @close="close" :title="diglogTitle" 
     @innerVisible="innerVisible"
     @outerVisible="outerVisible"
     >
     <el-form :model="dialogFromData" :rules="rules" ref="form">
-       <el-form-item tem label="商品" prop="hotGoodsGoodsCode" label-width="100px">
+       <el-form-item tem label="商品" prop="goodsName" label-width="100px">
          <el-input style="width:70%" v-model="dialogFromData.goodsName"></el-input>
          <el-button type="primary" style="margin-left:15px" @click="choseBox">选择</el-button>
       </el-form-item>
@@ -110,6 +110,7 @@ export default {
   data() {
     return {
        en:"",
+       Index:0,
        show:false,
        dialogVisible:false,
        numdialogVisible:false,
@@ -151,7 +152,7 @@ export default {
          total:0,
        },
       toolba:[
-        {val:1,name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增热门位商品',this.type = '1',this.dialogFromData.goodsName = ''}},
+        {val:1,name:'新增',type:'primary',func:()=>{this.show = true,this.diglogTitle = '新增热门位商品',this.type = '1',this.dialogFromData.goodsName = '', this.dialogFromData.hotGoodsWeight =null}},
         {val:1,name:'修改',type:'primary',
             func:()=>{
             if(this.IsChecked.length < 1)
@@ -161,7 +162,9 @@ export default {
             this.show = true,
             this.diglogTitle = '修改热门位商品',
             this.type = '2',
-            this.dialogFromData.goodsName = ''
+            this.dialogFromData.goodsName = this.editlist.goodsName
+            this.dialogFromData.hotGoodsWeight = this.editlist.hotGoodsWeight
+            
           }
         },
         {
@@ -210,6 +213,7 @@ export default {
         }
       ],
       col:[
+        {label:'排序',prop:'hotGoodsWeight'},
         {label:'商品编号',prop:'goodsCode'},
         {label:'商品名称',prop:'goodsName'},
         {label:'商品价格',prop:'goodsSalePrice'},
@@ -235,7 +239,7 @@ export default {
           { required: true, message: '请输入活动名称', trigger: 'blur' },
           { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
-        hotGoodsGoodsCode:[
+        goodsName:[
            { required: true, message: '不能为空', trigger: 'blur' },
         ],
         hotGoodsWeight:[
@@ -277,6 +281,7 @@ export default {
            console.log('查询成功！')
            this.tableData = res.data.list
            console.log(this.tableData)
+          this.Index = (res.data.pageNum - 1) * res.data.pageSize +1
           this.pageinfo.total = res.data.total
           
       })
@@ -310,20 +315,27 @@ export default {
       cols.forEach(item=>{
         this.idList.push(item.hotGoodsId)
         this.editlist.hotGoodsId = cols[0].hotGoodsId
-        // this.editlist.hotGoodsGoodsCode = cols[0].hotGoodsGoodsCode
+        this.editlist.hotGoodsGoodsCode = cols[0].hotGoodsGoodsCode
+        this.editlist.goodsName = cols[0].goodsName
         this.editlist.hotGoodsWeight = cols[0].hotGoodsWeight
         this.editlist.version = cols[0].version
       })
       console.log(cols)
       console.log(this.idList)
-      // console.log(this.editlist)
+      console.log(this.editlist)
     },
     close(data){
       this.show=data
+      this.dialogFromData.goodsName = ''
+      this.editlist.hotGoodsGoodsCode = ''
+      this.dialogFromData.hotGoodsWeight =''
       this.$refs.form.resetFields();
     },
     outerVisible(){
       this.show = false
+      this.dialogFromData.goodsName = ''
+      this.editlist.hotGoodsGoodsCode = ''
+      this.dialogFromData.hotGoodsWeight =''
       this.$refs.form.resetFields();
     },
     innerVisible(){
@@ -338,19 +350,21 @@ export default {
                  this.$message.success('新增成功！')
               this.show = false
               this.pageinfo.pageNum = 1
-              this.$refs.choseFrom.resetFields();
+              // this.$refs.choseFrom.resetFields();
               this.getshopList()
               this.$refs.form.resetFields();
             })
           }else if(this.type === '2'){
+            this.editlist.hotGoodsWeight = this.dialogFromData.hotGoodsWeight
+            console.log(this.editlist)
             req('editHotShop',{
               ...this.editlist
             }).then(res=>{
-              if(res.code!=1)  return this.$message.error('修改失败！')
+              if(res.code!=1)  return this.$message.error(res.msg)
                  this.$message.success('修改成功！')
               this.show = false
-              this.pageinfo.pageNum = 1
-              this.$refs.choseFrom.resetFields();
+              // this.pageinfo.pageNum = 1
+              // this.$refs.choseFrom.resetFields();
               this.getshopList()
               this.$refs.form.resetFields();
             })
@@ -422,8 +436,8 @@ export default {
     },
     CloseClose(){
       this.dialogVisible = false
-      this.dialogFromData.goodsName = ''
-      this.editlist.hotGoodsGoodsCode = ''
+      // this.dialogFromData.goodsName = ''
+      // this.editlist.hotGoodsGoodsCode = ''
     },
     ChosehandleCurrentChange(cols){
       console.log(cols)
