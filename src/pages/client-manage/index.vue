@@ -171,7 +171,12 @@ export default {
         if(res.code!=1) return console.log('查询失败')
            console.log('查询成功！')
            this.tableData = res.data.list
-          
+           this.tableData.forEach(item=>{
+                  if(item.userSex === 1)
+                    item.userSex = '男'
+                  else if(item.userSex === 2)
+                    item.userSex = '女'
+                })   
           this.pageinfo.total = res.data.total
       })
     },

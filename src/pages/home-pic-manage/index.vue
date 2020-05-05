@@ -14,7 +14,7 @@
     <i-table :toolbar="toolba" :tabledata="tableData" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
     :pageinfo="pageinfo" @handleSelectionChange="handleSelectionChange">
        <el-table-column prop="rollImageWeight" label="排序" align="center"></el-table-column>   
-       <el-table-column prop="imageUrl" label="图片路径" align="center"></el-table-column>  
+       <el-table-column prop="imageUrl" label="图片路径" align="center" :show-overflow-tooltip='true'></el-table-column>  
        <el-table-column prop="rollImageCondition" label="状态" align="center"></el-table-column>  
        <el-table-column label="预览" align="center">
         <template slot-scope="scope"> 
@@ -147,6 +147,32 @@ export default {
     IDialog,
   },
   data() {
+    var checkStart = (rule,value,callback) =>{
+      if(!value){
+        return callback(new Error('请输入起始日期'));
+      }else{
+        if(this.dialogFromData.rollImageBeginDateStr){
+          if(this.dialogFromData.rollImageBeginDateStr > this.dialogFromData.rollImageEndDateStr){
+             return callback(new Error('起始日期要小于结束日期'))
+          }else{
+            callback()
+          }
+        }
+      }
+    }
+    var checkEnd = (rule,value,callback) =>{
+      if(!value){
+         return callback(new Error('请输入结束日期'));
+      }else{
+        if(this.dialogFromData.rollImageEndDateStr){
+          if(this.dialogFromData.rollImageEndDateStr < this.dialogFromData.rollImageBeginDateStr){
+            return callback(new Error('结束日期不能小于开始日期'))
+          }else{
+            callback()
+          }
+        }
+      }
+    }
     return {
        imglist:[
         'https://xzsd-1253216955.cos.ap-guangzhou.myqcloud.com/rollImage/rollImage_baf1455a54f34cec873d3b01323b644c.png',
@@ -308,10 +334,10 @@ export default {
            { required: true, message: '该项不能为空', trigger: 'change' },
         ],
         rollImageBeginDateStr:[
-           {  required: true, message: '请选择日期', trigger: 'change' },
+           {  required: true, validator:checkStart, trigger: 'change' },
         ],
         rollImageEndDateStr:[
-           {  required: true, message: '请选择日期', trigger: 'change' },
+           {  required: true,validator:checkEnd, trigger: 'change' },
         ],
       },
       

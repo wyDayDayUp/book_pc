@@ -143,6 +143,7 @@ export default {
           goodsCode:'',
           total:0,
        },
+       Col:{},
       //  选择框数据
        choseInfo:{
          pageNum:1,
@@ -233,6 +234,7 @@ export default {
       dialogFromData:{
         hotGoodsGoodsCode:'',
         hotGoodsWeight:'',
+        goodsName:'',
       },
       rules:{
         account:[
@@ -346,7 +348,7 @@ export default {
               hotGoodsGoodsCode:this.dialogFromData.hotGoodsGoodsCode,
               hotGoodsWeight:this.dialogFromData.hotGoodsWeight
             }).then(res=>{
-              if(res.code!=1)  return this.$message.error('新增失败,该商品已经存在！')
+              if(res.code!=1)  return this.$message.error(res.msg)
                  this.$message.success('新增成功！')
               this.show = false
               this.pageinfo.pageNum = 1
@@ -432,16 +434,21 @@ export default {
     choseSumbit(){
       if(!this.editlist.hotGoodsGoodsCode)
         return this.$message.warning('请选择一项！')
-       this.dialogVisible = false  
+        
+      this.dialogFromData.hotGoodsGoodsCode = this.Col.goodsId
+      this.dialogFromData.goodsName = this.Col.goodsName
+      this.editlist.hotGoodsGoodsCode = this.Col.goodsId
+      this.dialogVisible = false 
     },
     CloseClose(){
       this.dialogVisible = false
-      // this.dialogFromData.goodsName = ''
-      // this.editlist.hotGoodsGoodsCode = ''
+      this.dialogFromData.goodsName = ''
+      this.editlist.hotGoodsGoodsCode = ''
     },
     ChosehandleCurrentChange(cols){
       console.log(cols)
       if(cols){
+      this.Col = cols 
       this.dialogFromData.hotGoodsGoodsCode = cols.goodsId
       this.dialogFromData.goodsName = cols.goodsName
       this.editlist.hotGoodsGoodsCode = cols.goodsId
