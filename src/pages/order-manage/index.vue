@@ -146,6 +146,7 @@ export default {
         //  删除id数组
        idList:{},
        IsChecked:[],
+       excelData:[],
        fromData:{
           value:'',
           userName:'',
@@ -333,6 +334,14 @@ export default {
                     
             }
         },
+        {
+          val:1,
+          name:'导出',
+          type:'primary',
+          func:()=>{
+            this.outExe()
+          }
+        }
       ],
       col:[
         {label:'订单编码',prop:'orderCode'},
@@ -501,6 +510,40 @@ export default {
     ordersumit(){
       this.orderdialogVisible = false
       this.getliststore()
+    },
+    outExe() {
+        this.$confirm('此操作将导出excel文件, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+        }).then(() => {
+            this.excelData =  this.tableData //你要导出的数据list。
+            this.export2Excel()
+        }).catch(() => {
+        
+        });
+    },
+    export2Excel() {
+        var that = this;
+        require.ensure([], () => {
+            console.log(this.excelData)
+            const { export_json_to_excel } = require('@/excel/Export2Excel'); //这里必须使用绝对路径
+            const tHeader = ['订单编码','订单总价', '订单状态', '支付状态','门店编码','下单人姓名','下单人手机号','确认付款时间']; // 导出的表头名
+            const filterVal = ['orderCode','orderTotalPrice','orderCondition', 'orderPayCondition','storeCode','userName','userPhone','orderPayTime']; // 导出的表头字段名
+            const list = that.excelData;
+            const data = that.formatJson(filterVal, this.tableData);
+            let time1,time2 = '';
+            // if(this.start !== '') {
+            //     time1 = that.moment(that.start).format('YYYY-MM-DD')
+            // }
+            // if(this.end !== '') {
+            //     time2 = that.moment(that.end).format('YYYY-MM-DD')
+            // }
+            export_json_to_excel(tHeader, data,`订单数据`);// 导出的表格名称，根据需要自己命名
+        })
+    },
+    formatJson(filterVal, jsonData) {
+        return jsonData.map(v => filterVal.map(j => v[j]))
     }
   }
 }
